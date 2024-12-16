@@ -1,13 +1,10 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from flask import Flask, send_from_directory
 
-class CustomHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == '/':
-            self.path = 'maintenance.html'  # Renvoie maintenance.html par défaut
-        return super().do_GET()
+app = Flask(__name__)
+
+@app.route('/')
+def maintenance():
+    return send_from_directory('.', 'maintenance.html')  # Renvoie le fichier HTML
 
 if __name__ == "__main__":
-    PORT = 5002
-    httpd = HTTPServer(("", PORT), CustomHandler)
-    print(f"Server started at http://localhost:{PORT}")
-    httpd.serve_forever()
+    app.run(host='0.0.0.0', port=5002)  # Écoute sur toutes les interfaces sur le port 5002
