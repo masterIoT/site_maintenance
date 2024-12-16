@@ -1,0 +1,7 @@
+to start run this commande line : 
+
+macOs et windows : 
+docker run -p 5002:5002 site_maitenance
+
+linux : 
+docker run --add-host=host.docker.internal:host-gateway -p 5002:5002 site_maitenance
