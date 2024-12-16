@@ -16,6 +16,9 @@ WORKDIR /
 # Copier les fichiers du projet
 COPY . /
 
+# Installer les dépendances Python depuis requirements.txt
+RUN pip install flask 
+
 # Exposer le port utilisé par le serveur
 EXPOSE 5002
 
